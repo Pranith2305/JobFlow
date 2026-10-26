@@ -9,6 +9,8 @@ import ApplicationList from "../Components/ApplicationList";
 import Interviews from "../interview/interview";
 import Analytics from "../Analytics/Analytics";
 import AIAssistant from "../AIAssistant/AIAssistant";
+import Settings from "../Settings/Settings";
+import HelpSupport from "../HelpSupport/HelpSupport";
 
 type ApplicationStatus =
   | "Applied"
@@ -187,6 +189,10 @@ const Dashboard = () => {
             <Analytics/>
           ) : activePage === "AI Assistant" ? (
             <AIAssistant />
+          ) : activePage === "Settings" ? (
+            <Settings />
+          ) : activePage === "Help&Support" ? (
+            <HelpSupport />
           ) :(
             <section className="placeholder-page">
               <div className="placeholder-icon">

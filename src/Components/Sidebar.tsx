@@ -103,9 +103,9 @@ const Sidebar = ({ activePage, onNavigate, applications }: SidebarProps) => {
 
         <button
           className={`nav-item ${
-            activePage === "Help & Support" ? "active" : ""
+            activePage === "Help&Support" ? "active" : ""
           }`}
-          onClick={() => onNavigate("Help & Support")}
+          onClick={() => onNavigate("Help&Support")}
         >
           <CircleHelp size={18} />
           <span>Help & Support</span>
