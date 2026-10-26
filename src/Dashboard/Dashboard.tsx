@@ -8,6 +8,7 @@ import StatsCards from "../Components/StatsCards";
 import ApplicationList from "../Components/ApplicationList";
 import Interviews from "../interview/interview";
 import Analytics from "../Analytics/Analytics";
+import AIAssistant from "../AIAssistant/AIAssistant";
 
 type ApplicationStatus =
   | "Applied"
@@ -184,7 +185,9 @@ const Dashboard = () => {
             <Interviews />
           ) : activePage === "Analytics" ? (
             <Analytics/>
-          ) : (
+          ) : activePage === "AI Assistant" ? (
+            <AIAssistant />
+          ) :(
             <section className="placeholder-page">
               <div className="placeholder-icon">
                 <Sparkles size={25} />
