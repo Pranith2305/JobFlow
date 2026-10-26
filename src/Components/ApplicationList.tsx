@@ -9,6 +9,7 @@ import {
   BriefcaseBusiness,
 } from "lucide-react";
 
+
 type ApplicationStatus =
   | "Applied"
   | "Interview"
@@ -29,64 +30,13 @@ type Application = {
 
 type ApplicationListProps = {
   searchQuery: string;
+  applications: Application[];
+  setApplications: any;
 };
 
-const initialApplications: Application[] = [
-  {
-    id: 1,
-    company: "Google",
-    role: "Frontend Engineer",
-    type: "Full-time · Remote",
-    date: "Oct 24, 2026",
-    status: "Interview",
-    initials: "G",
-    color: "google",
-  },
-  {
-    id: 2,
-    company: "Notion",
-    role: "Software Engineer",
-    type: "Full-time · Hybrid",
-    date: "Oct 22, 2026",
-    status: "Applied",
-    initials: "N",
-    color: "notion",
-  },
-  {
-    id: 3,
-    company: "Figma",
-    role: "Product Engineer Intern",
-    type: "Internship · Remote",
-    date: "Oct 20, 2026",
-    status: "Offer",
-    initials: "F",
-    color: "figma",
-  },
-  {
-    id: 4,
-    company: "Stripe",
-    role: "Full-Stack Developer",
-    type: "Full-time · Hybrid",
-    date: "Oct 18, 2026",
-    status: "Applied",
-    initials: "S",
-    color: "stripe",
-  },
-  {
-    id: 5,
-    company: "Linear",
-    role: "Frontend Developer",
-    type: "Full-time · Remote",
-    date: "Oct 16, 2026",
-    status: "Rejected",
-    initials: "L",
-    color: "linear",
-  },
-];
 
-const ApplicationList = ({ searchQuery }: ApplicationListProps) => {
-  const [applications, setApplications] =
-    useState<Application[]>(initialApplications);
+const ApplicationList = ({ searchQuery, applications, setApplications }: ApplicationListProps) => {
+ 
 
   const [filter, setFilter] = useState("All");
   const [localSearch, setLocalSearch] = useState("");
@@ -146,7 +96,7 @@ const ApplicationList = ({ searchQuery }: ApplicationListProps) => {
       color: "default",
     };
 
-    setApplications((current) => [newApplication, ...current]);
+    setApplications((current : any) => [newApplication, ...current]);
     setNewCompany("");
     setNewRole("");
     setNewStatus("Applied");
@@ -156,8 +106,8 @@ const ApplicationList = ({ searchQuery }: ApplicationListProps) => {
   };
 
   const handleDeleteApplication = (id: number) => {
-    setApplications((current) =>
-      current.filter((application) => application.id !== id)
+    setApplications((current : any) =>
+      current.filter((application : any) => application.id !== id)
     );
   };
 

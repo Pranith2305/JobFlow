@@ -9,13 +9,15 @@ import {
   Sparkles,
   PanelLeftClose,
 } from "lucide-react";
+import { useState} from "react";
 
 type SidebarProps = {
   activePage: string;
   onNavigate: (page: string) => void;
+  applications: any[];
 };
 
-const Sidebar = ({ activePage, onNavigate }: SidebarProps) => {
+const Sidebar = ({ activePage, onNavigate, applications }: SidebarProps) => {
   const navigation = [
     { label: "Dashboard", icon: LayoutDashboard },
     { label: "Applications", icon: BriefcaseBusiness },
@@ -35,14 +37,14 @@ const Sidebar = ({ activePage, onNavigate }: SidebarProps) => {
         </button>
       </div>
 
-      <div className="workspace-switcher">
+      {/* <div className="workspace-switcher">
         <div className="workspace-avatar">J</div>
         <div className="workspace-info">
           <strong>Personal Workspace</strong>
           <span>Free plan</span>
         </div>
         <span className="workspace-chevron">⌄</span>
-      </div>
+      </div> */}
 
       <div className="sidebar-section-label">WORKSPACE</div>
 
@@ -58,7 +60,7 @@ const Sidebar = ({ activePage, onNavigate }: SidebarProps) => {
             <Icon size={18} strokeWidth={1.8} />
             <span>{label}</span>
             {label === "Applications" && (
-              <span className="nav-count">12</span>
+              <span className="nav-count">{applications.length}</span>
             )}
           </button>
         ))}

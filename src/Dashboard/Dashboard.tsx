@@ -6,26 +6,108 @@ import Sidebar from "../Components/Sidebar";
 import Header from "../Components/Header";
 import StatsCards from "../Components/StatsCards";
 import ApplicationList from "../Components/ApplicationList";
+import Interviews from "../interview/interview";
+import Analytics from "../Analytics/Analytics";
 
+type ApplicationStatus =
+  | "Applied"
+  | "Interview"
+  | "Offer"
+  | "Rejected"
+  | "Saved";
+
+
+type Application = {
+  id: number;
+  company: string;
+  role: string;
+  type: string;
+  date: string;
+  status: ApplicationStatus;
+  initials: string;
+  color: string;
+};
+
+
+const initialApplications: Application[] = [
+    {
+      id: 1,
+      company: "Google",
+      role: "Frontend Engineer",
+      type: "Full-time · Remote",
+      date: "Oct 24, 2026",
+      status: "Interview",
+      initials: "G",
+      color: "google",
+    },
+    {
+      id: 2,
+      company: "Notion",
+      role: "Software Engineer",
+      type: "Full-time · Hybrid",
+      date: "Oct 22, 2026",
+      status: "Applied",
+      initials: "N",
+      color: "notion",
+    },
+    {
+      id: 3,
+      company: "Figma",
+      role: "Product Engineer Intern",
+      type: "Internship · Remote",
+      date: "Oct 20, 2026",
+      status: "Offer",
+      initials: "F",
+      color: "figma",
+    },
+    {
+      id: 4,
+      company: "Stripe",
+      role: "Full-Stack Developer",
+      type: "Full-time · Hybrid",
+      date: "Oct 18, 2026",
+      status: "Applied",
+      initials: "S",
+      color: "stripe",
+    },
+    {
+      id: 5,
+      company: "Linear",
+      role: "Frontend Developer",
+      type: "Full-time · Remote",
+      date: "Oct 16, 2026",
+      status: "Rejected",
+      initials: "L",
+      color: "linear",
+    },
+  ];
+  
 const Dashboard = () => {
   const [activePage, setActivePage] = useState("Dashboard");
   const [searchQuery, setSearchQuery] = useState("");
 
+  
+
+   const [applications, setApplications] =
+    useState<Application[]>(initialApplications);
   return (
     <div className="app-shell">
       <Sidebar
         activePage={activePage}
         onNavigate={setActivePage}
+        applications={applications}
       />
 
       <main className="main-area">
         <Header
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
+          activePage={activePage}
         />
 
         <div className="dashboard-content">
-          <div className="welcome-row">
+        {activePage === "Dashboard" && (
+              <div className="welcome-row">
             <div>
               <div className="welcome-eyebrow">
                 <span className="welcome-dot" />
@@ -55,14 +137,16 @@ const Dashboard = () => {
               </span>
             </button>
           </div>
+        )}
 
-          {activePage === "Dashboard" ||
-          activePage === "Applications" ? (
+          {activePage === "Dashboard" ? (
             <>
               <StatsCards />
 
               <ApplicationList
                 searchQuery={searchQuery}
+                applications={applications}
+                setApplications={setApplications}
               />
 
               <section className="ai-banner">
@@ -88,6 +172,18 @@ const Dashboard = () => {
                 </button>
               </section>
             </>
+          ) : activePage === "Applications" ? (
+            <>
+            <ApplicationList
+                searchQuery={searchQuery}
+                applications={applications}
+                setApplications={setApplications}
+              />
+            </>
+          ) : activePage === "Interviews" ? (
+            <Interviews />
+          ) : activePage === "Analytics" ? (
+            <Analytics/>
           ) : (
             <section className="placeholder-page">
               <div className="placeholder-icon">

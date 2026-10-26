@@ -4,15 +4,16 @@ import { Bell, Search, ChevronDown } from "lucide-react";
 type HeaderProps = {
   searchQuery: string;
   onSearchChange: (value: string) => void;
+  activePage: string; 
 };
 
-const Header = ({ searchQuery, onSearchChange }: HeaderProps) => {
+const Header = ({searchQuery, onSearchChange, activePage }: HeaderProps) => {
   return (
     <header className="topbar">
       <div className="breadcrumb">
         <span>Workspace</span>
         <span className="breadcrumb-separator">/</span>
-        <strong>Dashboard</strong>
+        <strong>{activePage}</strong>
       </div>
 
       <div className="topbar-actions">
